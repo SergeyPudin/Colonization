@@ -56,4 +56,9 @@ public class BotHandler : MonoBehaviour
             }
         }
     }
+
+    private void AttachToBase()
+    {
+
+    }
 }
