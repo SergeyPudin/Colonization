@@ -1,10 +1,15 @@
 using UnityEngine;
+using Zenject;
 
 public class BotCreator : MonoBehaviour
 {
     [SerializeField] private int _price;
-    [SerializeField] private Bot _prefab;
+    //[SerializeField] private Bot _prefab;
     [SerializeField] private BotButtonHandler _buttonHandler;
+    [SerializeField] private Transform _spawnPoint;
+
+    [Inject]
+    private BotFactory _botFactory;
 
     private void OnEnable()
     {
@@ -16,6 +21,7 @@ public class BotCreator : MonoBehaviour
     private void CreateBot(int _)
     {
         Debug.Log("Creating bot");
-        //Bot bot = Instantiate(_prefab);
+        Bot bot = _botFactory.Create();
+        bot.transform.position = _spawnPoint.position;
     }
 }

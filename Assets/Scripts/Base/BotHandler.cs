@@ -1,9 +1,17 @@
 using UnityEngine;
+using Zenject;
 
 public class BotHandler : MonoBehaviour
 {
-    [SerializeField] private Bot[] _defaultBots;
     [SerializeField] private Counter _counter;
+
+    private Bot[] _defaultBots;
+
+    [Inject]
+    private void Construct(Bot[] bots)
+    {
+        _defaultBots = bots;
+    }
 
     private void Awake()
     {
@@ -13,7 +21,6 @@ public class BotHandler : MonoBehaviour
             mover.SetBase(this.transform);
         }
     }
-
     public void AssignCrystal(Crystal targetCrystal)
     {
         DispatchBot(targetCrystal);
